@@ -1,2 +1,2 @@
-# odl
-Python package for detecting outlier within multidimensional data
+# Outlier detection library
+Python package for detecting outlier within multidimensional numerical data, supporting a variety of algorithms such as Z-score, IWR, Isolation forest, Tukeys fence and Mahalanobis distance.
