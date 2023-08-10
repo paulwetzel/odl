@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "odlib"
+version = "0.0.1"
+authors = [
+  { name="Paul Wetzel", email="post@paulwet.com" },
+]
+description = "Python package for detecting outlier within multidimensional data"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/paulwetzel/odl"
+"Bug Tracker" = "https://github.com/paulwetzel/odl/issues"
