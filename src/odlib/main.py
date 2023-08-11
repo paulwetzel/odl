@@ -51,9 +51,8 @@ def zscore_detection(list_object):
     
     
     """
-    clib_main, clib_utils = init_base_functions()
-    prepared_list = prepare_list(list_object=list_object)
-    mean = compute_mean(list_object=prepared_list, clib=clib_main, core="c", method="arithmetic")
+    clib_main, clib_zscore = init_base_functions()
+    mean = compute_mean(list_object=list_object, clib=clib_zscore, core="c", method="arithmetic")
     print(mean)
 
 def create_random_point_set(x_dim, y_dim, num_points, cluster):

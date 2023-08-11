@@ -66,7 +66,7 @@
         "kind": 2,
         "importPath": "src.odlib.main",
         "description": "src.odlib.main",
-        "peekOfCode": "def zscore_detection(list_object):\n    \"\"\"\n    \"\"\"\n    clib_main, clib_utils = init_base_functions()\n    prepared_list = prepare_list(list_object=list_object)\n    mean = compute_mean(list_object=prepared_list, clib=clib_main, core=\"c\", method=\"arithmetic\")\n    print(mean)\ndef create_random_point_set(x_dim, y_dim, num_points, cluster):\n    \"\"\"\n    This function will generate a set of random x,y coordinates useful for testing",
+        "peekOfCode": "def zscore_detection(list_object):\n    \"\"\"\n    \"\"\"\n    clib_main, clib_zscore = init_base_functions()\n    mean = compute_mean(list_object=list_object, clib=clib_zscore, core=\"c\", method=\"arithmetic\")\n    print(mean)\ndef create_random_point_set(x_dim, y_dim, num_points, cluster):\n    \"\"\"\n    This function will generate a set of random x,y coordinates useful for testing\n    Args:",
         "detail": "src.odlib.main",
         "documentation": {}
     },
