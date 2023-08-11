@@ -20,7 +20,7 @@ def init_base_functions():
 
     return clib_main, clib_utils
 
-def prepare_list(list_object, clib_to_use):
+def prepare_list(list_object):
     """
     Prepare a python type list for sending it to a c function
 
@@ -30,13 +30,12 @@ def prepare_list(list_object, clib_to_use):
 
     Args:
         list_object (list or np.array): List of elements that should be converted 
-        clib_to_use (CDLL type object): CDLL that the list will be passed to
 
     Returns:
         c_list (ctypes.c): List ready to pass to a c function   
     """
 
     c_list = (ctypes.c_float * len(list_object))(*list_object)
-    clib_to_use.process
+    return c_list
 
 
