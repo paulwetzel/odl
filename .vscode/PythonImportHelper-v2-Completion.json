@@ -9,11 +9,46 @@
         "documentation": {}
     },
     {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
         "label": "init_base_functions",
         "kind": 2,
         "importPath": "src.odlib.main",
         "description": "src.odlib.main",
-        "peekOfCode": "def init_base_functions():\n    \"\"\"\n    Initializes base functions from corresponding .so files\n    This library makes use of an underlying c core to improve computation time and allow a more efficient runtime\n    as opposed to pure python usage. \n    Args:\n        None\n    Returns:\n    \"\"\"\n    clib_main = ctypes.CDLL(\"src/odlib/core/main.so\")",
+        "peekOfCode": "def init_base_functions():\n    \"\"\"\n    Initializes base functions from corresponding .so files\n    This library makes use of an underlying c core to improve computation time and allow a more efficient runtime\n    as opposed to pure python usage. \n    Args:\n        None\n    Returns:\n    \"\"\"\n    curr_dir = os.path.dirname(os.path.abspath(__file__))",
         "detail": "src.odlib.main",
         "documentation": {}
     },
@@ -27,11 +62,47 @@
         "documentation": {}
     },
     {
+        "label": "compute_mean",
+        "kind": 2,
+        "importPath": "src.odlib.main",
+        "description": "src.odlib.main",
+        "peekOfCode": "def compute_mean(list_object, clib, core={\"c\", \"python\"}, method={\"arithmetic\"}):\n    \"\"\"\n    \"\"\"\n    if core == \"c\":\n        # The c core will be used for processing\n        print(\"test\")\n        mean = 1\n    elif core == \"python\":\n        # The python core will be used for processing\n        mean = np.mean(list_object)",
+        "detail": "src.odlib.main",
+        "documentation": {}
+    },
+    {
+        "label": "zscore_detection",
+        "kind": 2,
+        "importPath": "src.odlib.main",
+        "description": "src.odlib.main",
+        "peekOfCode": "def zscore_detection(list_object):\n    \"\"\"\n    \"\"\"\n    clib_main, clib_utils = init_base_functions()\n    prepared_list = prepare_list(list_object=list_object)\n    mean = compute_mean(list_object=prepared_list, clib=clib_main, core=\"c\", method=\"arithmetic\")\n    print(mean)\ndef create_random_point_set(x_dim, y_dim, num_points, cluster):\n    \"\"\"\n    This function will generate a set of random x,y coordinates useful for testing",
+        "detail": "src.odlib.main",
+        "documentation": {}
+    },
+    {
+        "label": "create_random_point_set",
+        "kind": 2,
+        "importPath": "src.odlib.main",
+        "description": "src.odlib.main",
+        "peekOfCode": "def create_random_point_set(x_dim, y_dim, num_points, cluster):\n    \"\"\"\n    This function will generate a set of random x,y coordinates useful for testing\n    Args:\n        x_dim (Tuple): For specifying the x interval which the final result will have. [first_x, last_x]\n        y_dim (Tuple): For specifying the y interval which the final result fwill have. Same as above\n        num_points (Integer): How many points will be generated\n        cluster (True/False): Should the reuslting data be in clusters\n    Returns:\n        coordiantes (List od Tuples): ",
+        "detail": "src.odlib.main",
+        "documentation": {}
+    },
+    {
         "label": "__version__",
         "kind": 5,
         "importPath": "src.odlib.main",
         "description": "src.odlib.main",
         "peekOfCode": "__version__ = \"0.0.1\"\ndef init_base_functions():\n    \"\"\"\n    Initializes base functions from corresponding .so files\n    This library makes use of an underlying c core to improve computation time and allow a more efficient runtime\n    as opposed to pure python usage. \n    Args:\n        None\n    Returns:\n    \"\"\"",
+        "detail": "src.odlib.main",
+        "documentation": {}
+    },
+    {
+        "label": "data",
+        "kind": 5,
+        "importPath": "src.odlib.main",
+        "description": "src.odlib.main",
+        "peekOfCode": "data = create_random_point_set(x_dim=[0, 100], y_dim=[0, 100], num_points=50, cluster=True)\nzscore_detection(data)",
         "detail": "src.odlib.main",
         "documentation": {}
     }

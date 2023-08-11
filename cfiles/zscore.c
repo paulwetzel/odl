@@ -13,9 +13,11 @@
  *   mean (int) - the mean value of the whole dataset
  *
  * Example Usage:
- *   int result = add(5, 7);
- *   // result is now 12
+ *   
  */
 float mean_of_dataset(float* data, int length, int dimension) {
-    
+    for (int i = 0; i < length; i++) {
+        printf("%f\n", data[i]);
+    }
+    return 0;
 }
