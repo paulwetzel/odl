@@ -1,0 +1,38 @@
+[
+    {
+        "label": "ctypes",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "ctypes",
+        "description": "ctypes",
+        "detail": "ctypes",
+        "documentation": {}
+    },
+    {
+        "label": "init_base_functions",
+        "kind": 2,
+        "importPath": "src.odlib.main",
+        "description": "src.odlib.main",
+        "peekOfCode": "def init_base_functions():\n    \"\"\"\n    Initializes base functions from corresponding .so files\n    This library makes use of an underlying c core to improve computation time and allow a more efficient runtime\n    as opposed to pure python usage. \n    Args:\n        None\n    Returns:\n    \"\"\"\n    clib_main = ctypes.CDLL(\"src/odlib/core/main.so\")",
+        "detail": "src.odlib.main",
+        "documentation": {}
+    },
+    {
+        "label": "prepare_list",
+        "kind": 2,
+        "importPath": "src.odlib.main",
+        "description": "src.odlib.main",
+        "peekOfCode": "def prepare_list(list_object, clib_to_use):\n    \"\"\"\n    Prepare a python type list for sending it to a c function\n    When calling functions that are originally written in C, one can't simply pass a python list,\n    as datastructures in c remain much more strict. THis function takes in a list, alternativly np.array() will\n    work as well, and converts it into a format that will make it usable for a c function acessed by ctypes.\n    Args:\n        list_object (list or np.array): List of elements that should be converted \n        clib_to_use (CDLL type object): CDLL that the list will be passed to\n    Returns:",
+        "detail": "src.odlib.main",
+        "documentation": {}
+    },
+    {
+        "label": "__version__",
+        "kind": 5,
+        "importPath": "src.odlib.main",
+        "description": "src.odlib.main",
+        "peekOfCode": "__version__ = \"0.0.1\"\ndef init_base_functions():\n    \"\"\"\n    Initializes base functions from corresponding .so files\n    This library makes use of an underlying c core to improve computation time and allow a more efficient runtime\n    as opposed to pure python usage. \n    Args:\n        None\n    Returns:\n    \"\"\"",
+        "detail": "src.odlib.main",
+        "documentation": {}
+    }
+]
