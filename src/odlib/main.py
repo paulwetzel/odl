@@ -25,24 +25,6 @@ def init_base_functions():
 
     return clib_main, clib_zscore
 
-def prepare_list(list_object):
-    """
-    Prepare a python type list for sending it to a c function
-
-    When calling functions that are originally written in C, one can't simply pass a python list,
-    as datastructures in c remain much more strict. THis function takes in a list, alternativly np.array() will
-    work as well, and converts it into a format that will make it usable for a c function acessed by ctypes.
-
-    Args:
-        list_object (list or np.array): List of elements that should be converted 
-
-    Returns:
-        c_list (ctypes.c): List ready to pass to a c function   
-    """
-
-    c_list = (ctypes.c_float * len(list_object))(*list_object)
-    return c_list
-
 def compute_mean(list_object, clib, core={"c", "python"}, method={"arithmetic"}):
     """
     
@@ -50,8 +32,12 @@ def compute_mean(list_object, clib, core={"c", "python"}, method={"arithmetic"})
     
     if core == "c":
         # The c core will be used for processing
-        print("test")
-        mean = 1
+        data_flat = [val for sublist in list_object for val in sublist]
+        data_array = (ctypes.c_float * len(data_flat))(*data_flat)
+
+        rows = len(list_object)
+        cols = len(list_object[0])
+        mean = clib.compute_mean(data_array, rows, cols)
     elif core == "python":
         # The python core will be used for processing
         mean = np.mean(list_object)

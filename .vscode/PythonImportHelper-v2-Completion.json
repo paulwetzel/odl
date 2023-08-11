@@ -53,20 +53,11 @@
         "documentation": {}
     },
     {
-        "label": "prepare_list",
-        "kind": 2,
-        "importPath": "src.odlib.main",
-        "description": "src.odlib.main",
-        "peekOfCode": "def prepare_list(list_object):\n    \"\"\"\n    Prepare a python type list for sending it to a c function\n    When calling functions that are originally written in C, one can't simply pass a python list,\n    as datastructures in c remain much more strict. THis function takes in a list, alternativly np.array() will\n    work as well, and converts it into a format that will make it usable for a c function acessed by ctypes.\n    Args:\n        list_object (list or np.array): List of elements that should be converted \n    Returns:\n        c_list (ctypes.c): List ready to pass to a c function   ",
-        "detail": "src.odlib.main",
-        "documentation": {}
-    },
-    {
         "label": "compute_mean",
         "kind": 2,
         "importPath": "src.odlib.main",
         "description": "src.odlib.main",
-        "peekOfCode": "def compute_mean(list_object, clib, core={\"c\", \"python\"}, method={\"arithmetic\"}):\n    \"\"\"\n    \"\"\"\n    if core == \"c\":\n        # The c core will be used for processing\n        print(\"test\")\n        mean = 1\n    elif core == \"python\":\n        # The python core will be used for processing\n        mean = np.mean(list_object)",
+        "peekOfCode": "def compute_mean(list_object, clib, core={\"c\", \"python\"}, method={\"arithmetic\"}):\n    \"\"\"\n    \"\"\"\n    if core == \"c\":\n        # The c core will be used for processing\n        data_flat = [val for sublist in list_object for val in sublist]\n        data_array = (ctypes.c_float * len(data_flat))(*data_flat)\n        rows = len(list_object)\n        cols = len(list_object[0])\n        mean = clib.compute_mean(data_array, rows, cols)",
         "detail": "src.odlib.main",
         "documentation": {}
     },

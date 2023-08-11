@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <math.h>
 
+#define PY_SSIZE_T_CLEAN
+
 /*
  * Calculates the mean of the dataset.
  *
@@ -15,18 +17,15 @@
  * Example Usage:
  *   
  */
-float mean_of_dataset(float* data, int rows, int cols) {
-    switch(cols):
-    case 1:
-        //Onedimensional data
+double compute_mean(double *data, int rows, int cols) {
+    double sum = 0.0;
+    double *dataPtr = data; 
 
-    case 2:
-        //Twodimensional data
-
-
-
-    for (int i = 0; i < cols; i++) {
-        printf("%f\n", data[i]);
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            sum += *dataPtr++; 
+        }
     }
-    return 0;
+
+    return sum / (rows * cols);
 }
