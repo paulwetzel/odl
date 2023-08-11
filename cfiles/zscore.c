@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 
 #define PY_SSIZE_T_CLEAN
 
@@ -28,4 +29,53 @@ double compute_mean(double *data, int rows, int cols) {
     }
 
     return sum / (rows * cols);
+}
+
+
+void partition(double arr[], int left, int right, int *pivotLeft, int *pivotRight) {
+    double pivot = arr[right];
+    int i = left - 1;
+    int j = left - 1;
+
+    for (int k = left; k <= right - 1; k++) {
+        if (arr[k] < pivot) {
+            i++;
+            j++;
+            double temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            if (i != j) {
+                temp = arr[j];
+                arr[j] = arr[k];
+                arr[k] = temp;
+            }
+        } else if (arr[k] == pivot) {
+            j++;
+            double temp = arr[j];
+            arr[j] = arr[k];
+            arr[k] = temp;
+        }
+    }
+
+    double temp = arr[j + 1];
+    arr[j + 1] = arr[right];
+    arr[right] = temp;
+    *pivotLeft = i + 1;
+    *pivotRight = j + 1;
+}
+
+
+double quickselect(double arr[], int left, int right, int k) {
+    while (1) {
+        int pivotLeft, pivotRight;
+        partition(arr, left, right, &pivotLeft, &pivotRight);
+
+        if (k >= pivotLeft && k <= pivotRight) {
+            return arr[k];
+        } else if (k < pivotLeft) {
+            right = pivotLeft - 1;
+        } else {
+            left = pivotRight + 1;
+        }
+    }
 }
