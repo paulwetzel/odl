@@ -15,8 +15,17 @@
  * Example Usage:
  *   
  */
-float mean_of_dataset(float* data, int length, int dimension) {
-    for (int i = 0; i < length; i++) {
+float mean_of_dataset(float* data, int rows, int cols) {
+    switch(cols):
+    case 1:
+        //Onedimensional data
+
+    case 2:
+        //Twodimensional data
+
+
+
+    for (int i = 0; i < cols; i++) {
         printf("%f\n", data[i]);
     }
     return 0;
