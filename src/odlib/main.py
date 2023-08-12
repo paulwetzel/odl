@@ -25,7 +25,7 @@ def init_base_functions():
 
     return clib_main, clib_zscore
 
-def compute_mean(list_object, clib, core={"c", "python"}, method={"arithmetic"}):
+def compute_zscore(list_object, clib, core={"c", "python"}, method={"arithmetic"}):
     """
     
     """
@@ -37,7 +37,7 @@ def compute_mean(list_object, clib, core={"c", "python"}, method={"arithmetic"})
 
         rows = len(list_object)
         cols = len(list_object[0])
-        mean = clib.compute_mean(data_array, rows, cols)
+        mean = clib.identify_outliers(data_array, rows, cols)
     elif core == "python":
         # The python core will be used for processing
         mean = np.mean(list_object)
@@ -52,7 +52,7 @@ def zscore_detection(list_object):
     
     """
     clib_main, clib_zscore = init_base_functions()
-    mean = compute_mean(list_object=list_object, clib=clib_zscore, core="c", method="arithmetic")
+    mean = compute_zscore(list_object=list_object, clib=clib_zscore, core="c", method="arithmetic")
     print(mean)
 
 def create_random_point_set(x_dim, y_dim, num_points, cluster):

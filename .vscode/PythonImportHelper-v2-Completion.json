@@ -53,11 +53,11 @@
         "documentation": {}
     },
     {
-        "label": "compute_mean",
+        "label": "compute_zscore",
         "kind": 2,
         "importPath": "src.odlib.main",
         "description": "src.odlib.main",
-        "peekOfCode": "def compute_mean(list_object, clib, core={\"c\", \"python\"}, method={\"arithmetic\"}):\n    \"\"\"\n    \"\"\"\n    if core == \"c\":\n        # The c core will be used for processing\n        data_flat = [val for sublist in list_object for val in sublist]\n        data_array = (ctypes.c_float * len(data_flat))(*data_flat)\n        rows = len(list_object)\n        cols = len(list_object[0])\n        mean = clib.compute_mean(data_array, rows, cols)",
+        "peekOfCode": "def compute_zscore(list_object, clib, core={\"c\", \"python\"}, method={\"arithmetic\"}):\n    \"\"\"\n    \"\"\"\n    if core == \"c\":\n        # The c core will be used for processing\n        data_flat = [val for sublist in list_object for val in sublist]\n        data_array = (ctypes.c_float * len(data_flat))(*data_flat)\n        rows = len(list_object)\n        cols = len(list_object[0])\n        mean = clib.identify_outliers(data_array, rows, cols)",
         "detail": "src.odlib.main",
         "documentation": {}
     },
@@ -66,7 +66,7 @@
         "kind": 2,
         "importPath": "src.odlib.main",
         "description": "src.odlib.main",
-        "peekOfCode": "def zscore_detection(list_object):\n    \"\"\"\n    \"\"\"\n    clib_main, clib_zscore = init_base_functions()\n    mean = compute_mean(list_object=list_object, clib=clib_zscore, core=\"c\", method=\"arithmetic\")\n    print(mean)\ndef create_random_point_set(x_dim, y_dim, num_points, cluster):\n    \"\"\"\n    This function will generate a set of random x,y coordinates useful for testing\n    Args:",
+        "peekOfCode": "def zscore_detection(list_object):\n    \"\"\"\n    \"\"\"\n    clib_main, clib_zscore = init_base_functions()\n    mean = compute_zscore(list_object=list_object, clib=clib_zscore, core=\"c\", method=\"arithmetic\")\n    print(mean)\ndef create_random_point_set(x_dim, y_dim, num_points, cluster):\n    \"\"\"\n    This function will generate a set of random x,y coordinates useful for testing\n    Args:",
         "detail": "src.odlib.main",
         "documentation": {}
     },
