@@ -119,3 +119,15 @@ float compute_median_z_score(double *data, int rows, int cols) {
 
     return mzScore;
 }
+
+
+void identify_outliers(double *data, int rows, int cols, float threshold) {
+    int total_elements = rows * cols;
+
+    for (int i = 0; i < total_elements; i++) {
+        float mzScore = compute_median_z_score(data + i, 1, 1);
+        if (fabs(mzScore) > threshold) {
+            printf("Data point at index %d is an outlier. Mz-Score: %f\n", i, mzScore);
+        }
+    }
+}
