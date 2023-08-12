@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-float compute__data_mean(int rows, int cols, float arr[rows][cols]) { //rows = i; cols = j
+float compute_data_mean(int rows, int cols, float arr[rows][cols]) { //rows = i; cols = j
     float sum = 0.0;
     for(int i; i<rows;i++) {
         for(int j; j<cols; j++) {
@@ -26,6 +26,10 @@ float compute_zscore(float data[][2], int rows, int cols) {
     compute_squared_difference(mean, rows, cols, data);
     float var = compute_data_mean(rows, cols, data);
     float stddev = sqrt(var);
+    printf("%f\n", stddev);
+    for (int i; i < rows; i++) {
+        
+    }
     return 0; 
 }
 
