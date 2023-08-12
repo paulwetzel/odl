@@ -3,7 +3,6 @@
 #include <stdlib.h>
 
 #define PY_SSIZE_T_CLEAN
-
 /*
  * Calculates the mean of the dataset.
  *
@@ -78,4 +77,45 @@ double quickselect(double arr[], int left, int right, int k) {
             left = pivotRight + 1;
         }
     }
+}
+
+double compute_median(double arr[], int size) {
+    if (size % 2 == 1) {
+        return quickselect(arr, 0, size - 1, size / 2);
+    } else {
+        double lower = quickselect(arr, 0, size - 1, size / 2 - 1);
+        double upper = quickselect(arr, 0, size - 1, size / 2);
+        return (lower + upper) / 2.0;
+    }
+}
+
+double compute_mad(double *data, int rows, int cols) {
+    int total_elements = rows * cols;
+    double *dataPtr = data;
+
+    double sorted_data[total_elements];
+    for (int i = 0; i < total_elements; i++) {
+        sorted_data[i] = *dataPtr++;
+    }
+
+    double median = compute_median(sorted_data, total_elements);
+
+    double abs_deviations[total_elements];
+    dataPtr = data;
+    for (int i = 0; i < total_elements; i++) {
+        abs_deviations[i] = fabs(*dataPtr++ - median);
+    }
+
+    double mad = compute_median(abs_deviations, total_elements);
+
+    return mad;
+}
+
+float compute_median_z_score(double *data, int rows, int cols) {
+    double median = compute_median(data, rows * cols);
+    double mad = compute_mad(data, rows, cols);
+
+    float mzScore = (data[0] - median) / mad;
+
+    return mzScore;
 }
