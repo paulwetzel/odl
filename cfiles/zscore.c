@@ -112,6 +112,7 @@ double compute_mad(double *data, int rows, int cols) {
 }
 
 float compute_median_z_score(double *data, int rows, int cols) {
+    printf("Entered compute_median")
     double median = compute_median(data, rows * cols);
     double mad = compute_mad(data, rows, cols);
 
